@@ -1,0 +1,17 @@
+{
+  "name": "memory-settle-kit",
+  "version": "1.0.0",
+  "description": "Raw-first, emotion-tagged long-term memory for LLM agents.",
+  "type": "module",
+  "main": "./src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./triggers": "./src/triggers.mjs"
+  },
+  "files": ["src", "docs", "adapters", "README.md", "LICENSE"],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": ["llm", "memory", "agent", "emotion", "rag"],
+  "license": "MIT"
+}
