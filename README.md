@@ -26,7 +26,7 @@
 ```js
 import {
   configure, appendRaw, commitSettlement, markTagged, validateSettlement,
-} from 'Forevery';
+} from 'forevery';
 
 configure({
   rawDir: './data/raw',
