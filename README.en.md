@@ -1,4 +1,4 @@
-# memory-settle-kit
+# Forevery
 
 Raw-first, emotion-tagged long-term memory for LLM agents.
 
@@ -14,7 +14,7 @@ append raw turns → settle when the session ends/idles → validate → commit
 ## Quick start
 
 ```js
-import { configure, appendRaw, commitSettlement } from 'memory-settle-kit';
+import { configure, appendRaw, commitSettlement } from 'Forevery';
 
 configure({ rawDir: './data/raw', settlementsDir: './data/settlements', focusNames: ['Alice','Bob'] });
 appendRaw('s1', 'user', 'thanks');

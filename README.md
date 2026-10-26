@@ -1,4 +1,4 @@
-# memory-settle-kit
+# Forevery
 
 给 LLM agent 用的「原文优先 + 事后打标」长期记忆核心。
 
@@ -26,7 +26,7 @@
 ```js
 import {
   configure, appendRaw, commitSettlement, markTagged, validateSettlement,
-} from 'memory-settle-kit';
+} from 'Forevery';
 
 configure({
   rawDir: './data/raw',
