@@ -14,7 +14,7 @@ append raw turns → settle when the session ends/idles → validate → commit
 ## Quick start
 
 ```js
-import { configure, appendRaw, commitSettlement } from 'Forevery';
+import { configure, appendRaw, commitSettlement } from 'forevery';
 
 configure({ rawDir: './data/raw', settlementsDir: './data/settlements', focusNames: ['Alice','Bob'] });
 appendRaw('s1', 'user', 'thanks');
