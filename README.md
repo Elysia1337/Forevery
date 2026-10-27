@@ -88,6 +88,9 @@ console.log(result.ok, result.path);
 - [注意事项](docs/CAVEATS.md)
 - [数据格式](docs/SCHEMA.md)
 - [半激发（可选）](docs/ACTIVATION.md)
+- [部署与运维](docs/DEPLOY.md)
+- [安全与隔离](docs/SECURITY.md)
+- [Benchmark](docs/BENCHMARK.md)
 
 ## 适配器
 
