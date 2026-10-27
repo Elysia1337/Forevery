@@ -3,7 +3,7 @@
 ## 安装
 
 ```bash
-npm install memory-settle-kit
+npm install forevery
 ```
 
 或直接把 `src/` 拷进项目。
@@ -11,7 +11,7 @@ npm install memory-settle-kit
 ## 配置
 
 ```js
-import { configure } from 'memory-settle-kit';
+import { configure } from 'forevery';
 
 configure({
   rawDir: './data/raw',
@@ -100,8 +100,8 @@ commitSettlement({
 ## 5. 暂停 / 静默
 
 ```js
-import { parseCommand } from 'memory-settle-kit/triggers';
-import { setPause, clearPause, isPaused, markQuiet, clearQuiet } from 'memory-settle-kit';
+import { parseCommand } from 'forevery/triggers';
+import { setPause, clearPause, isPaused, markQuiet, clearQuiet } from 'forevery';
 
 const cmd = parseCommand(userText);
 if (cmd?.type === 'pause-all') setPause(convKey, 'all');
@@ -111,7 +111,26 @@ if (cmd?.type === 'resume') clearPause(convKey);
 markQuiet(convKey, Date.now() + 8 * 3600_000, '晚安');
 ```
 
-## 6. 适配器职责
+## 6. 连续性卡
+
+settle 时加 `continuityKey`，核心会写下最近 1–3 轮的压缩卡：
+
+```js
+commitSettlement({
+  sessionId, transcript, rounds,
+  continuityKey: 'conv-1',
+  autoIndex: false,
+});
+
+import { readContinuity } from 'forevery';
+const card = readContinuity('conv-1');
+```
+
+- 卡最多 700 字，只含最近 1–3 轮的标题+原文摘录；
+- 新会话/轮换时由适配器注入，别把整份 settlement 塞进去；
+- 它是“接上大概”，不是全文；细节仍要 recall 或翻原文。
+
+## 7. 适配器职责
 
 - 取消息；
 - 调模型（核心不调）；
