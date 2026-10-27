@@ -48,3 +48,10 @@ test('pause and quiet', () => {
   markQuiet('c1', Date.now() + 1000);
   assert.equal(isQuiet('c1'), true);
 });
+
+test('continuity card', async () => {
+  const { readContinuity } = await import('../src/index.mjs');
+  const r = commitSettlement({ sessionId: 's3', transcript, rounds, autoIndex: false, continuityKey: 'c3' });
+  assert.equal(r.ok, true);
+  assert.match(readContinuity('c3'), /最近一次收尾/);
+});
