@@ -87,6 +87,7 @@ console.log(result.ok, result.path);
 - [暂停词与收尾词](docs/PAUSE-WORDS.md)
 - [注意事项](docs/CAVEATS.md)
 - [数据格式](docs/SCHEMA.md)
+- [半激发（可选）](docs/ACTIVATION.md)
 
 ## 适配器
 
