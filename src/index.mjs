@@ -17,6 +17,7 @@ const cfg = {
   daily: process.env.MEMORY_ROLLUP || '',
   quietFile: process.env.MEMORY_QUIET_FILE || './data/quiet.json',
   controlFile: process.env.MEMORY_CONTROL_FILE || './data/control.json',
+  recentDir: process.env.MEMORY_RECENT_DIR || './data/recent',
 };
 export function configure(next = {}) { for (const [k, v] of Object.entries(next)) if (v !== undefined) cfg[k] = v; }
 export function config() { return { ...cfg }; }
@@ -131,10 +132,30 @@ export function validateSettlement({ transcript, rounds }) {
   return errors;
 }
 
+function writeContinuity(key, transcript, rounds) {
+  if (!key) return;
+  try {
+    const last = rounds.slice(-3).map(r => {
+      if (r.skipped) return `- ${r.title}：${r.reason || '没有记'}`;
+      const idxA = transcript.findIndex(t => t.id === r.span?.[0]);
+      const idxB = transcript.findIndex(t => t.id === r.span?.[1]);
+      const text = (idxA >= 0 && idxB >= idxA ? transcript.slice(idxA, idxB + 1) : [])
+        .map(t => t.text).join(' ').replace(/\s+/g, ' ').slice(0, 220);
+      return `- ${r.title}：${text}`;
+    }).join('\n');
+    const body = `## 最近一次收尾\n${last}\n`;
+    fs.mkdirSync(cfg.recentDir, { recursive: true });
+    fs.writeFileSync(path.join(cfg.recentDir, safe(key) + '.md'), body.slice(0, 700));
+  } catch {}
+}
+export function readContinuity(key) {
+  try { return fs.readFileSync(path.join(cfg.recentDir, safe(key) + '.md'), 'utf8').trim(); } catch { return ''; }
+}
+
 export function commitSettlement({
   sessionId, transcript, rounds, settledBy = 'agent', inContext = true,
   micro = false, confidence = 'high', imported = false, recovered = false,
-  reannotated = false, source = 'settle', autoIndex = true,
+  reannotated = false, source = 'settle', autoIndex = true, continuityKey = '',
 }) {
   const errors = validateSettlement({ transcript, rounds });
   if (errors.length) return { ok: false, errors };
@@ -159,6 +180,7 @@ export function commitSettlement({
   fs.writeFileSync(tmp, JSON.stringify(settlement, null, 2) + '\n');
   fs.renameSync(tmp, sp);
   markTagged(sessionId, confidence);
+  writeContinuity(continuityKey, transcript, rounds);
   if (autoIndex && cfg.indexer) {
     const env = { ...process.env, SETTLE_DIR: cfg.settlementsDir, RAW_DIR: cfg.rawDir };
     try { spawnSync(process.execPath, [cfg.daily], { timeout: 60000, windowsHide: true, env }); } catch {}
