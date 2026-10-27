@@ -30,7 +30,9 @@
 
 ## 参考实现
 
-- `adapters/minimal.mjs`：文件版，无模型；
+- `adapters/minimal.mjs`：最小示例；
+- `adapters/file-store.mjs`：文件版 store，封装 append/state/commit/list；
+- `adapters/mock-model.mjs`：确定性 mock 模型，用于契约测试；
 - 核心自带 `appendRaw` / `commitSettlement`，可直接作为文件 store。
 
 ## 契约测试
