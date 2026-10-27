@@ -10,3 +10,14 @@
 - quiet window
 - minimal adapter example
 - tests
+
+## 1.0.4
+
+- fix false closing when `完工` appears inside `干完工作`
+- add continuity card written on settlement
+- add regression tests for trigger matching
+
+## 1.0.5
+
+- document continuity cards: write on settle, inject on new session
+- fix package name in usage docs (`forevery`)
