@@ -39,3 +39,8 @@
 
 - add durable tagging queue with lease/recover/ack/fail/dead
 - add crash-recovery queue tests
+
+## 1.0.10
+
+- add multi-session write-path replay benchmark
+- add benchmark baseline report
