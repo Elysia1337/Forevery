@@ -156,10 +156,15 @@ export function commitSettlement({
   sessionId, transcript, rounds, settledBy = 'agent', inContext = true,
   micro = false, confidence = 'high', imported = false, recovered = false,
   reannotated = false, source = 'settle', autoIndex = true, continuityKey = '',
+  codebookVersion = '', observedAt = '', eventTime = '', validFrom = '', validUntil = '',
+  expiresAt = '', tombstone = false, supersedes = '', supersededBy = '', idempotencyKey = '',
 }) {
   const errors = validateSettlement({ transcript, rounds });
   if (errors.length) return { ok: false, errors };
   if (!sessionId) return { ok: false, errors: ['missing sessionId'] };
+  if (idempotencyKey) {
+    try { const old = JSON.parse(fs.readFileSync(path.join(cfg.settlementsDir, safe(sessionId) + '.json'), 'utf8')); if (old.idempotency_key === idempotencyKey) return { ok: true, path: path.join(cfg.settlementsDir, safe(sessionId) + '.json'), settlement: old, idempotent: true }; } catch {}
+  }
   fs.mkdirSync(cfg.settlementsDir, { recursive: true });
   const s = safe(sessionId);
   const sp = path.join(cfg.settlementsDir, s + '.json');
@@ -170,7 +175,11 @@ export function commitSettlement({
   }
   fs.writeFileSync(path.join(cfg.settlementsDir, s + '.transcript.jsonl'), transcript.map(t => JSON.stringify(t)).join('\n') + '\n');
   const settlement = {
-    version: SETTLEMENT_SCHEMA_VERSION, session_id: String(sessionId), revision, settled_at: now(),
+    version: SETTLEMENT_SCHEMA_VERSION, schema_version: SETTLEMENT_SCHEMA_VERSION,
+    session_id: String(sessionId), revision, settled_at: now(),
+    codebook_version: codebookVersion, observed_at: observedAt, event_time: eventTime,
+    valid_from: validFrom, valid_until: validUntil, expires_at: expiresAt,
+    tombstone: !!tombstone, supersedes, superseded_by: supersededBy, idempotency_key: idempotencyKey,
     settled_by: settledBy, in_context: inContext, micro, confidence,
     imported, recovered, reannotated, source,
     start: transcript[0].id, end: transcript[transcript.length - 1].id,
