@@ -19,6 +19,23 @@
 4. 补标结果不能覆盖 `high`；
 5. 索引只收 `tagged`，`pending` 不可见。
 
+## 持久化队列（已提供）
+
+```js
+import { TagQueue } from 'forevery/queue';
+const q = new TagQueue('./data/tag-queue.json', { leaseMs: 5*60*1000, maxAttempts: 3 });
+q.enqueue({ sessionId });
+const job = q.claim();
+q.ack(job.id);        // 成功
+q.fail(job.id, 'err'); // 失败；超过 maxAttempts 进 dead
+q.recover();          // 进程重启后，把过期 claimed 放回 pending
+```
+
+- 原子写：tmp + rename；主文件坏了回退 `.tmp`；
+- claim 带 lease，崩溃后自动回收；
+- 失败重试到上限进 dead，不无限循环；
+- 队列只存 job，不存原文；原文仍在 raw。
+
 ## 队列建议
 
 - 持久化队列 + 重试 + 死信；
