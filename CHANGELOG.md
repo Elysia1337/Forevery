@@ -28,3 +28,9 @@
 - add injection gate with focus/companion/creative modes
 - add silent/weak/strong channels
 - document activation boundary
+
+## 1.0.8
+
+- add file-backed reference adapter
+- add deterministic mock model
+- add adapter contract tests
