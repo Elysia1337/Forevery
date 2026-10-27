@@ -21,3 +21,10 @@
 
 - document continuity cards: write on settle, inject on new session
 - fix package name in usage docs (`forevery`)
+
+## 1.0.6
+
+- add optional in-memory activation pool (TTL/capacity)
+- add injection gate with focus/companion/creative modes
+- add silent/weak/strong channels
+- document activation boundary
