@@ -91,6 +91,7 @@ console.log(result.ok, result.path);
 - [部署与运维](docs/DEPLOY.md)
 - [安全与隔离](docs/SECURITY.md)
 - [Benchmark](docs/BENCHMARK.md)
+- [最小检索器](docs/RETRIEVAL.md)
 
 ## 适配器
 
