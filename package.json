@@ -1,6 +1,6 @@
 {
   "name": "forevery",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Forevery: raw-first, emotion-tagged long-term memory for LLM agents.",
   "type": "module",
   "main": "./src/index.mjs",
@@ -13,7 +13,8 @@
     "./queue": "./src/queue.mjs",
     "./health": "./src/health.mjs",
     "./retrieval": "./src/retrieval.mjs",
-    "./errors": "./src/errors.mjs"
+    "./errors": "./src/errors.mjs",
+    "./adapters/sqlite-queue": "./adapters/sqlite-queue.mjs"
   },
   "files": [
     "src",
