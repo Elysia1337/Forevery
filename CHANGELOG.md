@@ -34,3 +34,8 @@
 - add file-backed reference adapter
 - add deterministic mock model
 - add adapter contract tests
+
+## 1.0.9
+
+- add durable tagging queue with lease/recover/ack/fail/dead
+- add crash-recovery queue tests
