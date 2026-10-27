@@ -50,3 +50,8 @@
 - add health check
 - add quickstart example
 - add deployment and security docs
+
+## 1.0.12
+
+- add minimal lexical retriever (examples/benchmark only)
+- add golden query replay
