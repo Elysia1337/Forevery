@@ -44,3 +44,9 @@
 
 - add multi-session write-path replay benchmark
 - add benchmark baseline report
+
+## 1.0.11
+
+- add health check
+- add quickstart example
+- add deployment and security docs
