@@ -68,3 +68,8 @@
 - add stable error codes and MemoryError
 - add TypeScript declarations
 - document error/version strategy
+
+## 1.0.15
+
+- add SQLite queue reference (Node 22+ `node:sqlite`)
+- document database vs file queue
