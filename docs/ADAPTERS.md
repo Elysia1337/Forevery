@@ -33,6 +33,7 @@
 - `adapters/minimal.mjs`：最小示例；
 - `adapters/file-store.mjs`：文件版 store，封装 append/state/commit/list；
 - `adapters/mock-model.mjs`：确定性 mock 模型，用于契约测试；
+- `adapters/sqlite-queue.mjs`：数据库版打标队列，需要 Node 22+ 自带的数据库模块；文件版仍是默认。
 - 核心自带 `appendRaw` / `commitSettlement`，可直接作为文件 store。
 
 ## 契约测试
