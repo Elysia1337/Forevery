@@ -61,6 +61,8 @@
 - add real child-process SIGKILL recovery test
 - add crash helper
 
+维护记录：中间提交 `ebc1f26` 曾把崩溃测试的子程序放进测试目录，自动测试器把它当成一条测试执行，子程序按设计强杀自己，导致该提交的测试流水线失败。子程序已移到 `bench/helpers/`，从后续提交起流水线恢复通过；`ebc1f26` 不是发布版本。
+
 ## 1.0.14
 
 - add stable error codes and MemoryError
