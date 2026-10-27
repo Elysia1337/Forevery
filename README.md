@@ -92,6 +92,7 @@ console.log(result.ok, result.path);
 - [安全与隔离](docs/SECURITY.md)
 - [Benchmark](docs/BENCHMARK.md)
 - [最小检索器](docs/RETRIEVAL.md)
+- [错误码与版本策略](docs/ERRORS.md)
 
 ## 适配器
 
