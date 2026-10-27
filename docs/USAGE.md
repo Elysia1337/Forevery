@@ -111,7 +111,26 @@ if (cmd?.type === 'resume') clearPause(convKey);
 markQuiet(convKey, Date.now() + 8 * 3600_000, '晚安');
 ```
 
-## 6. 连续性卡
+## 6. 半激发是自选开关（默认关闭）
+
+半激发不是安装后自动运行的功能，它必须由**使用者自己打开**。
+
+- 默认关闭：不建激活池、不做候选预热、不做弱提示；
+- 打开后才启用：激活池、静默/弱提示/强注入三档；
+- 关闭不影响基础召回和连续性卡；
+- 个人系统里 QQ 桥目前手动设为「陪伴模式」，你可以随时关掉；
+- 包本身不替你做决定，开关放在适配器配置里。
+
+```js
+// 适配器自己的开关，示意
+const activationEnabled = false;
+if (activationEnabled) {
+  const pool = new ActivationPool();
+  const channel = decideChannel({ score, mode: 'companion' });
+}
+```
+
+## 7. 连续性卡
 
 settle 时加 `continuityKey`，核心会写下最近 1–3 轮的压缩卡：
 
@@ -130,7 +149,7 @@ const card = readContinuity('conv-1');
 - 新会话/轮换时由适配器注入，别把整份 settlement 塞进去；
 - 它是“接上大概”，不是全文；细节仍要 recall 或翻原文。
 
-## 7. 适配器职责
+## 8. 适配器职责
 
 - 取消息；
 - 调模型（核心不调）；
