@@ -55,3 +55,8 @@
 
 - add minimal lexical retriever (examples/benchmark only)
 - add golden query replay
+
+## 1.0.13
+
+- add real child-process SIGKILL recovery test
+- add crash helper
