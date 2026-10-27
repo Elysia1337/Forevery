@@ -19,6 +19,29 @@
 }
 ```
 
+## 生命周期可选字段
+
+```json
+{
+  "schema_version": "1.0",
+  "codebook_version": "v1",
+  "observed_at": "2026-01-01T00:00:00Z",
+  "event_time": "2026-01-01T00:00:00Z",
+  "valid_from": "2026-01-01",
+  "valid_until": "2026-12-31",
+  "expires_at": "2026-02-01T00:00:00Z",
+  "tombstone": false,
+  "supersedes": "old-id",
+  "superseded_by": ""
+}
+```
+
+- `tombstone`：删除标记，检索默认排除；
+- `supersedes` / `superseded_by`：新旧记录互相指向，旧记录保留但默认不取；
+- `codebook_version`：打标时码表版本，换码表可映射或降权；
+- `valid_from` / `valid_until`：现实有效区间；
+- `expires_at`：临时记忆 TTL。
+
 ## round
 
 ```json
