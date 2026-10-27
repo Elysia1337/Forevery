@@ -55,3 +55,24 @@ test('continuity card', async () => {
   assert.equal(r.ok, true);
   assert.match(readContinuity('c3'), /最近一次收尾/);
 });
+
+test('optional lifecycle fields', () => {
+  const r = commitSettlement({
+    sessionId: 's4', transcript, rounds, autoIndex: false,
+    codebookVersion: 'v1', observedAt: '2026-01-01', validFrom: '2026-01-01',
+    validUntil: '2026-12-31', tombstone: false, supersedes: 'old', supersededBy: '',
+  });
+  assert.equal(r.ok, true);
+  assert.equal(r.settlement.schema_version, '1.0');
+  assert.equal(r.settlement.codebook_version, 'v1');
+  assert.equal(r.settlement.supersedes, 'old');
+});
+
+test('idempotency key returns existing settlement', () => {
+  const a = commitSettlement({ sessionId: 's5', transcript, rounds, autoIndex: false, idempotencyKey: 'k1' });
+  const b = commitSettlement({ sessionId: 's5', transcript, rounds, autoIndex: false, idempotencyKey: 'k1' });
+  assert.equal(a.ok, true);
+  assert.equal(b.ok, true);
+  assert.equal(b.idempotent, true);
+  assert.equal(b.settlement.revision, 1);
+});
