@@ -60,3 +60,9 @@
 
 - add real child-process SIGKILL recovery test
 - add crash helper
+
+## 1.0.14
+
+- add stable error codes and MemoryError
+- add TypeScript declarations
+- document error/version strategy
