@@ -46,4 +46,6 @@ q.recover();          // 进程重启后，把过期 claimed 放回 pending
 
 ## 测试
 
-至少注入三种崩溃：写一半、打标一半、索引一半；重启后能自愈，不产生重复索引。
+- `test/queue-crash.test.mjs`：子进程 enqueue → claim → `SIGKILL`，父进程等租约过期后 `recover`，重新 claim 并 ack；
+- `test/queue.test.mjs`：坏主文件回退 `.tmp`、失败进 dead、租约过期恢复；
+- 还应补：写一半、打标一半、索引一半；重启后能自愈，不产生重复索引。
