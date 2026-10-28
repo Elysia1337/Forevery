@@ -92,3 +92,7 @@
 
 - include the emotion codebook as docs/CODEBOOK.md
 - document codebook version and remapping rule
+
+## 1.0.20
+
+- default codebook_version to v0.1 and export CODEBOOK_VERSION
