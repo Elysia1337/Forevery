@@ -78,3 +78,8 @@
 
 - add settlement queue (enqueue after tagging, drain to commit)
 - add settle-queue test
+
+## 1.0.17
+
+- settlement queue startup drain
+- dead-letter inspection helpers
