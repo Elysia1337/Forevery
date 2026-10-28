@@ -87,3 +87,8 @@
 ## 1.0.18
 
 - queue-crash test resolves the child script from the package location, not cwd
+
+## 1.0.19
+
+- include the emotion codebook as docs/CODEBOOK.md
+- document codebook version and remapping rule
