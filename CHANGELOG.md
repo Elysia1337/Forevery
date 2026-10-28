@@ -96,3 +96,8 @@
 ## 1.0.20
 
 - default codebook_version to v0.1 and export CODEBOOK_VERSION
+
+## 1.0.21
+
+- add CLAUDE.md / AGENTS.md / SESSION-START.md templates
+- document client auto-load vs manual session start
