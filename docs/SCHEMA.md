@@ -24,7 +24,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "codebook_version": "v1",
+  "codebook_version": "v0.1",
   "observed_at": "2026-01-01T00:00:00Z",
   "event_time": "2026-01-01T00:00:00Z",
   "valid_from": "2026-01-01",
