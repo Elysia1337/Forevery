@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 
 export const CORE_VERSION = '1.0.0';
 export const SETTLEMENT_SCHEMA_VERSION = '1.0';
+export const CODEBOOK_VERSION = 'v0.1';
 
 const cfg = {
   rawDir: process.env.MEMORY_RAW_DIR || './data/raw',
@@ -156,7 +157,7 @@ export function commitSettlement({
   sessionId, transcript, rounds, settledBy = 'agent', inContext = true,
   micro = false, confidence = 'high', imported = false, recovered = false,
   reannotated = false, source = 'settle', autoIndex = true, continuityKey = '',
-  codebookVersion = '', observedAt = '', eventTime = '', validFrom = '', validUntil = '',
+  codebookVersion = CODEBOOK_VERSION, observedAt = '', eventTime = '', validFrom = '', validUntil = '',
   expiresAt = '', tombstone = false, supersedes = '', supersededBy = '', idempotencyKey = '',
 }) {
   const errors = validateSettlement({ transcript, rounds });
