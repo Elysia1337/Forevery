@@ -2,7 +2,7 @@ export type Scope = 'family' | 'work' | 'knowledge' | 'mixed';
 export interface Round {
   id: string; span: [string, string]; title: string; scope: Scope;
   p_codes?: string[]; c_codes?: string[]; entities?: string[]; focus?: string;
-  participants?: string[]; scenes?: string[]; mixed?: boolean; short?: boolean;
+  participants?: string[]; scenes?: string[]; event_tags?: string[]; mixed?: boolean; short?: boolean;
   skipped?: boolean; reason?: string; tombstone?: boolean; superseded_by?: string;
 }
 export interface TranscriptTurn { id: string; role: 'user' | 'ai' | 'assistant'; text: string; time?: string; }
