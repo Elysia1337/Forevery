@@ -73,3 +73,8 @@
 
 - add SQLite queue reference (Node 22+ `node:sqlite`)
 - document database vs file queue
+
+## 1.0.16
+
+- add settlement queue (enqueue after tagging, drain to commit)
+- add settle-queue test
