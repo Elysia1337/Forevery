@@ -30,3 +30,5 @@ export function drainSettlementQueue({ max = 20, untilId = '' } = {}) {
 }
 
 export function queueSize() { return settlementQueue().size(); }
+export function deadSettlementJobs() { return settlementQueue().dead(); }
+export function queueSnapshot() { const q = settlementQueue(); return { pending: q.pending().length, dead: q.dead().length, total: q.size() }; }
