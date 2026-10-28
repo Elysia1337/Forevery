@@ -3,13 +3,15 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { TagQueue } from '../src/queue.mjs';
 
 test('real child kill then lease recovery', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'forevery-crash-'));
   const file = path.join(dir, 'queue.json');
-  const child = spawn(process.execPath, [path.join('bench', 'helpers', 'queue-crash-child.mjs'), file], { stdio: 'ignore' });
+  const pkgRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const child = spawn(process.execPath, [path.join(pkgRoot, 'bench', 'helpers', 'queue-crash-child.mjs'), file], { stdio: 'ignore' });
   await new Promise(resolve => child.once('exit', resolve));
   assert.equal(fs.existsSync(file), true);
   const q = new TagQueue(file, { leaseMs: 100, maxAttempts: 3 });
