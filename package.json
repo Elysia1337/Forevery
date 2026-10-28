@@ -1,6 +1,6 @@
 {
   "name": "forevery",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Forevery: raw-first, emotion-tagged long-term memory for LLM agents.",
   "type": "module",
   "main": "./src/index.mjs",
