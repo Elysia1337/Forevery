@@ -1,6 +1,6 @@
 {
   "name": "forevery",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Forevery: raw-first, emotion-tagged long-term memory for LLM agents.",
   "type": "module",
   "main": "./src/index.mjs",
@@ -48,5 +48,6 @@
     "url": "https://github.com/elysia1337/Forevery/issues"
   },
   "author": "Elysia1337",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "codebookVersion": "v0.1"
 }
