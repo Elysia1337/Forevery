@@ -47,6 +47,8 @@ const out = drainSettlementQueue({ max: 20, untilId: id });
 - 模型已经打完标，队列只负责落库；
 - 桥/插件可以落库后立刻 `drain`，也可以交给后台工人；
 - 失败重试、租约回收、死信沿用队列那套；
+- 进程启动时先 `drainSettlementQueue({ max: 50 })`，清掉上次残留；
+- `deadSettlementJobs()` / `queueSnapshot()` 可做告警。
 - 不改变落库校验，只改变“什么时候写”。
 
 ## 队列建议
