@@ -36,6 +36,19 @@ q.recover();          // 进程重启后，把过期 claimed 放回 pending
 - 失败重试到上限进 dead，不无限循环；
 - 队列只存 job，不存原文；原文仍在 raw。
 
+## 落库队列（标完入队）
+
+```js
+import { enqueueSettlement, drainSettlementQueue } from 'forevery/settle-queue';
+const { id } = enqueueSettlement({ sessionId, transcript, rounds, options });
+const out = drainSettlementQueue({ max: 20, untilId: id });
+```
+
+- 模型已经打完标，队列只负责落库；
+- 桥/插件可以落库后立刻 `drain`，也可以交给后台工人；
+- 失败重试、租约回收、死信沿用队列那套；
+- 不改变落库校验，只改变“什么时候写”。
+
 ## 队列建议
 
 - 持久化队列 + 重试 + 死信；
