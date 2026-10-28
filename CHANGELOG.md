@@ -83,3 +83,7 @@
 
 - settlement queue startup drain
 - dead-letter inspection helpers
+
+## 1.0.18
+
+- queue-crash test resolves the child script from the package location, not cwd
