@@ -56,6 +56,7 @@
   "focus": "Alice",
   "participants": ["Alice", "Bob"],
   "scenes": ["身份", "承诺"],
+  "event_tags": ["爸爸", "道歉", "喂饭"],
   "mixed": false,
   "short": false
 }
